@@ -104,7 +104,9 @@ if (mobileTop) {
 /* Mobile bar menu button */
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 if (mobileMenuBtn && toggle && navList) {
-  mobileMenuBtn.addEventListener('click', openNav);
+  mobileMenuBtn.addEventListener('click', () => {
+    navList.classList.contains('nav__list--open') ? closeNav() : openNav();
+  });
 }
 
 /* Subtle hero parallax */
