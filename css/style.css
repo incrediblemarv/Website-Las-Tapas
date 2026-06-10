@@ -829,10 +829,10 @@ address { font-style: normal; }
   .footer__grid { grid-template-columns: 1fr 1fr; }
   .footer__brand { grid-column: span 2; }
   .menu-items { grid-template-columns: 1fr; }
-  .gallery__grid { grid-template-columns: repeat(3, 1fr); gap: 3px; }
-  .gallery__item--wide { grid-column: span 1; }
+  .gallery__grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; gap: .625rem; }
+  .gallery__item--wide { grid-column: span 2; }
   .gallery__item--tall { grid-row: span 1; }
-  .gallery__item img { aspect-ratio: 1/1; object-fit: cover; }
+  .gallery__item img { height: 100%; object-fit: cover; aspect-ratio: unset; }
   .back-to-top { display: none; }
 }
 
@@ -842,6 +842,7 @@ address { font-style: normal; }
   .hero__actions .btn { flex: 1; justify-content: center; font-size: .875rem; padding: .75rem .625rem; }
   .footer__grid { grid-template-columns: 1fr; }
   .footer__brand { grid-column: auto; }
+  .gallery__grid { grid-auto-rows: 160px; }
 }
 
 /* ─── Mobile Bottom Bar ──────────────────────────── */
