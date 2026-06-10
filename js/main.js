@@ -4,24 +4,24 @@ const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
 
 if (nav) {
   let lastY = window.scrollY;
-  let navHideReady = false;
-
-  // Zwei Frames warten – iOS Safari stellt Scroll-Position erst danach wieder her
-  requestAnimationFrame(() => requestAnimationFrame(() => {
-    lastY = window.scrollY;
-    navHideReady = true;
-  }));
 
   const onScroll = () => {
     const y = window.scrollY;
     nav.classList.toggle('nav--scrolled', y > 40);
 
-    if (isMobile() && navHideReady) {
-      const menuOpen = document.getElementById('navList')?.classList.contains('nav__list--open');
+    if (isMobile()) {
+      const menuOpen = navList?.classList.contains('nav__list--open');
       if (!menuOpen) {
-        nav.classList.toggle('nav--hidden', y > lastY && y > 80);
+        const delta = y - lastY;
+        // Nur echtes Nutzer-Scrollen auswerten (kleine Schritte < 200px)
+        // Große Sprünge = Browser-Scroll-Wiederherstellung → ignorieren
+        if (delta > 4 && delta < 200 && y > 80) {
+          nav.classList.add('nav--hidden');
+        } else if (delta < 0) {
+          nav.classList.remove('nav--hidden');
+        }
       }
-    } else if (!isMobile()) {
+    } else {
       nav.classList.remove('nav--hidden');
     }
     lastY = y;
