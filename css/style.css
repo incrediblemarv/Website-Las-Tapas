@@ -946,3 +946,7 @@ address { font-style: normal; }
   color: var(--c-gold);
   transform: translateY(-3px);
 }
+
+@media (max-width: 768px) {
+  .back-to-top { display: none; }
+}
