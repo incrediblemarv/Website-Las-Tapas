@@ -834,6 +834,8 @@ address { font-style: normal; }
 
   .gallery__grid { grid-template-columns: 1fr; }
   .gallery__item--wide { grid-column: span 1; }
+
+  .back-to-top { display: none; }
 }
 
 @media (max-width: 480px) {
@@ -907,7 +909,6 @@ address { font-style: normal; }
 
 @media (max-width: 768px) {
   .mobile-bar { display: flex; }
-  .back-to-top { display: none; }
   body { padding-bottom: calc(72px + env(safe-area-inset-bottom)); }
 }
 
