@@ -829,8 +829,10 @@ address { font-style: normal; }
   .footer__grid { grid-template-columns: 1fr 1fr; }
   .footer__brand { grid-column: span 2; }
   .menu-items { grid-template-columns: 1fr; }
-  .gallery__grid { grid-template-columns: 1fr; }
+  .gallery__grid { grid-template-columns: repeat(3, 1fr); gap: 3px; }
   .gallery__item--wide { grid-column: span 1; }
+  .gallery__item--tall { grid-row: span 1; }
+  .gallery__item img { aspect-ratio: 1/1; object-fit: cover; }
   .back-to-top { display: none; }
 }
 
