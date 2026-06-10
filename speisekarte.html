@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Die Speisekarte von Las Tapas Bielefeld – Tapas, Paella, Fisch, Fleisch und Desserts. Authentische spanische Küche.">
+  <title>Speisekarte – Las Tapas Bielefeld</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Playfair+Display+SC:wght@400;700&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── Hero: Hintergrundbild ───────────────────────────────────────────── */
+    .menu-hero {
+      position: relative;
+      overflow: hidden;
+      background: var(--c-bg);
+    }
+    .menu-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('https://las-tapas-bielefeld.de/wp-content/uploads/2019/09/Spanisches-Essen-300x169.jpg');
+      background-size: cover;
+      background-position: center 60%;
+      opacity: .18;
+      filter: sepia(20%) saturate(70%);
+      z-index: 0;
+    }
+    .menu-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(12,10,11,.55) 0%, rgba(12,10,11,.35) 50%, rgba(12,10,11,.7) 100%);
+      z-index: 1;
+    }
+    .menu-hero .container { position: relative; z-index: 2; }
+
+    /* ── Spanische Akzente ───────────────────────────────────────────────── */
+    .menu-page::before {
+      content: '';
+      display: block;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent          0%,
+        rgba(170,21,27,.22)  20%,
+        rgba(196,133,74,.44) 50%,
+        rgba(170,21,27,.22)  80%,
+        transparent          100%
+      );
+      margin-bottom: clamp(4rem, 8vw, 7rem);
+    }
+    .eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 14px;
+      height: 2px;
+      background: linear-gradient(90deg, #C8102E 0%, #C4854A 100%);
+      margin-right: .5em;
+      vertical-align: middle;
+      opacity: .6;
+      border-radius: 1px;
+    }
+    .footer { border-top-color: transparent; }
+    .footer::before {
+      content: '';
+      display: block;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent          0%,
+        rgba(170,21,27,.28)  18%,
+        rgba(196,133,74,.52) 50%,
+        rgba(170,21,27,.28)  82%,
+        transparent          100%
+      );
+    }
+    .footer__top {
+      background:
+        radial-gradient(ellipse 65% 45% at 108% 0%, rgba(170,21,27,.045) 0%, transparent 55%),
+        var(--c-bg);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVIGATION ── -->
+  <nav class="nav nav--scrolled" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo"><img src="Images/las-tapas-bielefeld-logo.png" alt="Las Tapas Bielefeld"></a>
+      <button class="nav__toggle" id="navToggle" aria-label="Navigation öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__list" id="navList" role="list">
+        <li><a href="index.html" class="nav__link">Home</a></li>
+        <li><a href="speisekarte.html" class="nav__link nav__link--active">Speisekarte</a></li>
+        <li><a href="galerie.html" class="nav__link">Galerie</a></li>
+        <li><a href="index.html#ueber-uns" class="nav__link">Über uns</a></li>
+        <li><a href="index.html#oeffnungszeiten" class="nav__link">Öffnungszeiten</a></li>
+        <li><a href="tel:052156002030" class="nav__link nav__link--cta">0521 56002030</a></li>
+        <li class="nav__reserve"><a href="tel:052156002030" class="nav__reserve-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.77h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.4a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Jetzt Tisch reservieren
+        </a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── MENU HERO ── -->
+  <header class="menu-hero">
+    <div class="container">
+      <span class="eyebrow">Las Tapas Bielefeld</span>
+      <h1 class="menu-hero__title">Speisekarte</h1>
+      <p class="menu-hero__sub"><em>Frische Zutaten, sorgfältige Zubereitung</em></p>
+    </div>
+  </header>
+
+  <!-- ── MENU CONTENT ── -->
+  <main class="menu-page section">
+    <div class="container">
+
+      <!-- Kalte Tapas -->
+      <section class="menu-category" aria-labelledby="cat-tapas-frias">
+        <div class="menu-category__header">
+          <h2 class="menu-category__title" id="cat-tapas-frias">Tapas Frías</h2>
+          <span class="menu-category__sub">Kalte Tapas</span>
+        </div>
+        <div class="menu-items">
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Alioli con pan</span>
+              <span class="menu-item__desc">Aioli mit Brot</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Cesta de pan</span>
+              <span class="menu-item__desc">Brotkorb</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Aceitunas</span>
+              <span class="menu-item__desc">Oliven</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Jamón con melón</span>
+              <span class="menu-item__desc">Serrano-Schinken mit Melone</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Jamón Serrano</span>
+              <span class="menu-item__desc">Spanischer Serrano-Schinken</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Jamón Ibérico de Bellota</span>
+              <span class="menu-item__desc">Iberischer Bellota-Schinken</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Manchego</span>
+              <span class="menu-item__desc">Spanischer Manchego-Käse</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Queso de cabra</span>
+              <span class="menu-item__desc">Ziegenkäse</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Embutidos españoles</span>
+              <span class="menu-item__desc">Spanische Aufschnitt-Auswahl</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Sardinas marinadas</span>
+              <span class="menu-item__desc">Marinierte Sardellen</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Mejillones en vinagreta</span>
+              <span class="menu-item__desc">Muscheln in Vinaigrette</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Alcachofas</span>
+              <span class="menu-item__desc">Artischocken</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Warme Fleisch-Tapas -->
+      <section class="menu-category" aria-labelledby="cat-carne">
+        <div class="menu-category__header">
+          <h2 class="menu-category__title" id="cat-carne">Tapas Calientes de Carne</h2>
+          <span class="menu-category__sub">Warme Fleisch-Tapas</span>
+        </div>
+        <div class="menu-items">
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Chorizo al vino tinto</span>
+              <span class="menu-item__desc">Chorizo im Rotwein</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Hígado de ternera</span>
+              <span class="menu-item__desc">Rinderleber</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Brocheta de cerdo</span>
+              <span class="menu-item__desc">Schweinefleisch-Spieß</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Cerdo marinado</span>
+              <span class="menu-item__desc">Mariniertes Schweinefleisch</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Pollo al ajillo</span>
+              <span class="menu-item__desc">Hähnchenbrust mit Knoblauch</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Albóndigas en salsa de tomate</span>
+              <span class="menu-item__desc">Hackbällchen in Tomatensauce</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Escalope con salsa de pimienta</span>
+              <span class="menu-item__desc">Schweineschnitzel in Pfeffersauce</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Warme Fisch-Tapas -->
+      <section class="menu-category" aria-labelledby="cat-pescado">
+        <div class="menu-category__header">
+          <h2 class="menu-category__title" id="cat-pescado">Tapas Calientes de Pescado</h2>
+          <span class="menu-category__sub">Warme Fisch-Tapas</span>
+        </div>
+        <div class="menu-items">
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Gambas al ajillo</span>
+              <span class="menu-item__desc">Garnelen in Knoblauchöl</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Calamares fritos</span>
+              <span class="menu-item__desc">Gebratene Tintenfischringe</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Chipirones fritos</span>
+              <span class="menu-item__desc">Gebratene kleine Tintenfische</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Sardinas fritas</span>
+              <span class="menu-item__desc">Gebratene Sardellen</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Gambas a la plancha</span>
+              <span class="menu-item__desc">Gegrillte Garnelen</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Calamares a la plancha</span>
+              <span class="menu-item__desc">Gegrillter Tintenfisch</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Bocas de cangrejo empanadas</span>
+              <span class="menu-item__desc">Panierte Krebsscheren</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Gambas en nido de patatas</span>
+              <span class="menu-item__desc">Garnelen im Kartoffelnest</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Filetes de pescado a la plancha</span>
+              <span class="menu-item__desc">Gegrillte Fischfilets</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Brocheta de langostinos</span>
+              <span class="menu-item__desc">Scampi-Spieß</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Pescado frito</span>
+              <span class="menu-item__desc">Gebratener Fisch</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Mejillones en salsa de tomate</span>
+              <span class="menu-item__desc">Muscheln in Tomatensauce</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Verschiedene Warme Tapas -->
+      <section class="menu-category" aria-labelledby="cat-variadas">
+        <div class="menu-category__header">
+          <h2 class="menu-category__title" id="cat-variadas">Tapas Calientes Variadas</h2>
+          <span class="menu-category__sub">Verschiedene Warme Tapas</span>
+        </div>
+        <div class="menu-items">
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Tortilla española</span>
+              <span class="menu-item__desc">Spanisches Kartoffelomelett</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Patatas bravas</span>
+              <span class="menu-item__desc">Würzige Kartoffeln mit Salsa Brava</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Patatas aioli</span>
+              <span class="menu-item__desc">Kartoffeln mit Aioli</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Papas arrugadas con mojo</span>
+              <span class="menu-item__desc">Kanarische Runzelkartoffeln mit Mojo</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Champiñones al ajillo</span>
+              <span class="menu-item__desc">Champignons in Knoblauchsauce</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Dátiles con bacon</span>
+              <span class="menu-item__desc">Datteln im Speckmantel</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Caracoles en salsa</span>
+              <span class="menu-item__desc">Schnecken in Sauce</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Suppen & Salate -->
+      <section class="menu-category" aria-labelledby="cat-sopas">
+        <div class="menu-category__header">
+          <h2 class="menu-category__title" id="cat-sopas">Sopas y Ensaladas</h2>
+          <span class="menu-category__sub">Suppen &amp; Salate</span>
+        </div>
+        <div class="menu-items">
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Sopa de pescado</span>
+              <span class="menu-item__desc">Spanische Fischsuppe</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Crema de tomate</span>
+              <span class="menu-item__desc">Tomatencremesuppe</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Ensalada mixta</span>
+              <span class="menu-item__desc">Gemischter Salat mit Gemüse und Oliven</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Ensalada española</span>
+              <span class="menu-item__desc">Spanischer Salat mit Thunfisch, Artischocken und Paprika</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Ensalada de tomate</span>
+              <span class="menu-item__desc">Tomatensalat</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Eiergerichte -->
+      <section class="menu-category" aria-labelledby="cat-huevos">
+        <div class="menu-category__header">
+          <h2 class="menu-category__title" id="cat-huevos">Huevos</h2>
+          <span class="menu-category__sub">Eiergerichte</span>
+        </div>
+        <div class="menu-items">
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Huevos fritos con patatas</span>
+              <span class="menu-item__desc">Spiegeleier mit Bratkartoffeln</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Huevos fritos con jamón</span>
+              <span class="menu-item__desc">Spiegeleier mit Serrano-Schinken</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Huevos fritos con chorizo</span>
+              <span class="menu-item__desc">Spiegeleier mit Chorizo</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Tortilla de jamón / queso / mixta</span>
+              <span class="menu-item__desc">Omelett mit Serrano / Käse / gemischt</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Fischgerichte -->
+      <section class="menu-category" aria-labelledby="cat-pescados">
+        <div class="menu-category__header">
+          <h2 class="menu-category__title" id="cat-pescados">Pescados</h2>
+          <span class="menu-category__sub">Fischgerichte</span>
+        </div>
+        <div class="menu-items">
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Gambas grandes a la plancha</span>
+              <span class="menu-item__desc">Gegrillte große Garnelen</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Plato mixto de pescado frito</span>
+              <span class="menu-item__desc">Gemischter gebratener Fischteller</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Filete de salmón a la plancha</span>
+              <span class="menu-item__desc">Gegrilltes Lachsfilet mit Beilage</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Filete de perca a la plancha</span>
+              <span class="menu-item__desc">Gegrilltes Barschfilet mit Beilage</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Fleischgerichte -->
+      <section class="menu-category" aria-labelledby="cat-carnes">
+        <div class="menu-category__header">
+          <h2 class="menu-category__title" id="cat-carnes">Carnes</h2>
+          <span class="menu-category__sub">Fleischgerichte</span>
+        </div>
+        <div class="menu-items">
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Lomo de cerdo en salsa de pimienta</span>
+              <span class="menu-item__desc">Gegrilltes Schweinelendenstück in Pfeffersauce</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Chuletillas de cordero a la plancha</span>
+              <span class="menu-item__desc">Gegrillte Lammkotelets</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Rumpsteak a la plancha</span>
+              <span class="menu-item__desc">Gegrilltes Rumpsteak ca. 250g mit Beilage</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Paellas -->
+      <section class="menu-category" aria-labelledby="cat-paella">
+        <div class="menu-category__header">
+          <h2 class="menu-category__title" id="cat-paella">Paellas</h2>
+          <span class="menu-category__sub">Reispfannen</span>
+        </div>
+        <div class="menu-note">
+          Paellas werden frisch zubereitet und müssen <strong>vorab bestellt</strong> werden. Mindestbestellung für <strong>2 Personen</strong>.
+        </div>
+        <div class="menu-items" style="margin-top:1rem">
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Paella Valenciana</span>
+              <span class="menu-item__desc">Geflügel, Kaninchen, Gemüse</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Paella Mixta</span>
+              <span class="menu-item__desc">Geflügel, Kaninchen, Meeresfrüchte, Gemüse</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Paella Vegetariana</span>
+              <span class="menu-item__desc">Vegetarische Reispfanne</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Paella de Mariscos</span>
+              <span class="menu-item__desc">Meeresfrüchte-Reispfanne</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Desserts -->
+      <section class="menu-category" aria-labelledby="cat-postres">
+        <div class="menu-category__header">
+          <h2 class="menu-category__title" id="cat-postres">Postres</h2>
+          <span class="menu-category__sub">Desserts</span>
+        </div>
+        <div class="menu-items">
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Crema catalana</span>
+              <span class="menu-item__desc">Katalanische Creme mit karamellisiertem Zucker</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Flan de caramelo</span>
+              <span class="menu-item__desc">Karamell-Flan</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Flan con helado de vainilla</span>
+              <span class="menu-item__desc">Flan mit Vanilleeis</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Cerezas flameadas con helado</span>
+              <span class="menu-item__desc">Flambierte Kirschen mit Eis</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Churros españoles</span>
+              <span class="menu-item__desc">Spanische Churros</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Churros con chocolate caliente</span>
+              <span class="menu-item__desc">Churros mit heißer Schokolade</span>
+            </div>
+          </div>
+          <div class="menu-item" data-reveal>
+            <div class="menu-item__name-wrap">
+              <span class="menu-item__name">Crema catalana especial</span>
+              <span class="menu-item__desc">Mit Vanille, Karamell, Eis und Sahne</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="container">
+        <div class="hours__grid">
+          <div class="hours__block">
+            <span class="eyebrow">Öffnungszeiten</span>
+            <h2 class="section__title">Wir sind für Sie da</h2>
+            <table class="hours__table">
+              <tbody>
+                <tr><td>Montag – Donnerstag</td><td>12:00 – 23:00 Uhr</td></tr>
+                <tr><td>Freitag – Samstag</td><td>12:00 – 00:00 Uhr</td></tr>
+                <tr><td>Sonntag</td><td>Geschlossen</td></tr>
+                <tr class="hours__lunch"><td>Mittagstisch täglich</td><td>12:00 – 15:00 Uhr</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="hours__block">
+            <span class="eyebrow">Kontakt &amp; Adresse</span>
+            <h2 class="section__title">So finden Sie uns</h2>
+            <address class="contact">
+              <p class="contact__item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Arndtstraße 7, 33602 Bielefeld
+              </p>
+              <p class="contact__item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.77h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.4a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <a href="tel:052156002030">0521 – 56 00 20 30</a>
+              </p>
+              <p class="contact__item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <a href="mailto:info@las-tapas-bielefeld.de">info@las-tapas-bielefeld.de</a>
+              </p>
+            </address>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__main">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <a href="index.html" class="footer__logo"><img src="Images/las-tapas-bielefeld-logo.png" alt="Las Tapas Bielefeld"></a>
+            <p>Ihr spanisches Restaurant im Herzen Bielefelds. Frische Zutaten, herzliche Atmosphäre.</p>
+          </div>
+          <nav class="footer__nav" aria-label="Footer-Navigation">
+            <h3>Navigation</h3>
+            <ul role="list">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="speisekarte.html">Speisekarte</a></li>
+              <li><a href="galerie.html">Galerie</a></li>
+              <li><a href="index.html#oeffnungszeiten">Öffnungszeiten</a></li>
+            </ul>
+          </nav>
+          <nav class="footer__nav" aria-label="Rechtliches">
+            <h3>Rechtliches</h3>
+            <ul role="list">
+              <li><a href="impressum.html">Impressum</a></li>
+              <li><a href="datenschutz.html">Datenschutz</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="footer__bottom">
+          <p>&copy; <span id="footer-year">2024</span> Las Tapas Bielefeld &middot; Arndtstraße 7, 33602 Bielefeld</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="mobile-bar" role="navigation" aria-label="Schnellzugriff">
+    <a href="tel:052156002030" class="mobile-bar__call">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.77h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.4a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Jetzt Tisch reservieren
+    </a>
+    <button class="mobile-bar__top" id="mobileBackToTop" aria-label="Nach oben scrollen">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+  </div>
+
+  <button class="back-to-top" id="backToTop" aria-label="Nach oben scrollen">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Las Tapas – Authentisches spanisches Restaurant im Herzen von Bielefeld. Tapas, Paella und mehr. Mo–Do 12–23 Uhr, Fr–Sa 12–24 Uhr.">
+  <title>Las Tapas – Spanisches Restaurant Bielefeld</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Playfair+Display+SC:wght@400;700&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── Spanische Akzente (nur index.html) ──────────────────────────────── */
+
+    /* 1. Dezente Flaggen-Farbverläufe als Trennlinien zwischen Sektionen    */
+    .about::before,
+    .gallery::before,
+    .menu-teaser::before {
+      content: '';
+      display: block;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent        0%,
+        rgba(170,21,27,.22) 20%,
+        rgba(196,133,74,.44) 50%,
+        rgba(170,21,27,.22) 80%,
+        transparent        100%
+      );
+      margin-bottom: 3rem;
+    }
+
+    /* 2. Eyebrow-Labels: kleines Rot-Gold-Strichlein davor               */
+    .eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 14px;
+      height: 2px;
+      background: linear-gradient(90deg, #C8102E 0%, #C4854A 100%);
+      margin-right: .5em;
+      vertical-align: middle;
+      opacity: .6;
+      border-radius: 1px;
+    }
+
+    /* 3. About-Sektion: sehr zarter roter Schimmer links                  */
+    .about {
+      background:
+        radial-gradient(ellipse 55% 65% at -5% 55%, rgba(170,21,27,.05) 0%, transparent 65%),
+        var(--c-surface);
+    }
+
+    /* 4. Cards: roter Inset-Akzent links beim Hover                       */
+    .card:hover {
+      box-shadow: inset 2px 0 0 rgba(170,21,27,.45);
+    }
+
+    /* 5. Footer__top: gleiche Farbe wie ehemals .hours                    */
+    .footer__top {
+      background:
+        radial-gradient(ellipse 65% 45% at 108% 0%, rgba(170,21,27,.045) 0%, transparent 55%),
+        var(--c-bg);
+    }
+
+    /* 6. Footer: Flaggen-Farbverlauf als elegante Oberkante               */
+    .footer { border-top-color: transparent; }
+    .footer::before {
+      content: '';
+      display: block;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent          0%,
+        rgba(170,21,27,.28)  18%,
+        rgba(196,133,74,.52) 50%,
+        rgba(170,21,27,.28)  82%,
+        transparent          100%
+      );
+    }
+
+    /* 7. Über-uns: zwei überlappende Bildplatzhalter rechts */
+    .about__text p { max-width: none; }
+
+    .about__images {
+      position: relative;
+      padding-bottom: 10rem;
+      align-self: center;
+    }
+    .about__img-wrap {
+      border-radius: 4px;
+      overflow: hidden;
+      width: 75%;
+    }
+    .about__img-wrap--back {
+      margin-left: auto;
+      margin-top: 5rem;
+      position: relative;
+      left: 2.5rem;
+    }
+    .about__img-wrap--front {
+      position: absolute;
+      bottom: 0;
+      left: -2.5rem;
+      z-index: 2;
+      box-shadow: 0 28px 70px rgba(0,0,0,.8), 0 10px 24px rgba(0,0,0,.5);
+    }
+    .about__placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+      border-radius: 4px;
+    }
+
+    .about__actions {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+      .about__images {
+        padding-bottom: 8rem;
+        padding-inline: 1.5rem;
+        order: -1;
+      }
+      .about__img-wrap { width: 70%; }
+      .about__img-wrap--back {
+        margin-top: 3rem;
+        left: 1.5rem;
+      }
+      .about__img-wrap--front {
+        bottom: 0;
+        left: -1.5rem;
+      }
+      .about__actions {
+        flex-wrap: nowrap;
+        gap: .625rem;
+      }
+      .about__actions .btn {
+        flex: 1;
+        justify-content: center;
+        font-size: .875rem;
+        padding: .75rem .625rem;
+        white-space: nowrap;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVIGATION ── -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo"><img src="Images/las-tapas-bielefeld-logo.png" alt="Las Tapas Bielefeld"></a>
+      <button class="nav__toggle" id="navToggle" aria-label="Navigation öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__list" id="navList" role="list">
+        <li><a href="index.html" class="nav__link nav__link--active">Home</a></li>
+        <li><a href="speisekarte.html" class="nav__link">Speisekarte</a></li>
+        <li><a href="galerie.html" class="nav__link">Galerie</a></li>
+        <li><a href="#ueber-uns" class="nav__link">Über uns</a></li>
+        <li><a href="#oeffnungszeiten" class="nav__link">Öffnungszeiten</a></li>
+        <li><a href="tel:052156002030" class="nav__link nav__link--cta">0521 56002030</a></li>
+        <li class="nav__reserve"><a href="tel:052156002030" class="nav__reserve-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.77h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.4a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Jetzt Tisch reservieren
+        </a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero__bg" aria-hidden="true">
+      <img src="Images/lastapas-hero.png" alt="" loading="eager">
+    </div>
+    <div class="hero__glow" aria-hidden="true"></div>
+    <div class="hero__content">
+      <p class="hero__location">Arndtstraße 7 &middot; 33602 Bielefeld</p>
+      <h1 class="hero__title">Las Tapas</h1>
+      <p class="hero__subtitle"><em>Ein Stück Spanien im Herzen Bielefelds</em></p>
+      <div class="hero__actions">
+        <a href="speisekarte.html" class="btn btn--primary btn--lg">Zur Speisekarte</a>
+        <a href="tel:052156002030" class="btn btn--ghost btn--lg">0521 56002030</a>
+      </div>
+    </div>
+    <a href="#ueber-uns" class="hero__scroll" aria-label="Nach unten scrollen">
+      <svg width="20" height="28" viewBox="0 0 20 28" fill="none" aria-hidden="true">
+        <path d="M10 2v24M3 18l7 7 7-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </section>
+
+  <!-- ── ÜBER UNS ── -->
+  <section id="ueber-uns" class="about section">
+    <div class="container">
+      <div class="about__grid">
+        <div class="about__text">
+          <span class="eyebrow">Über uns</span>
+          <h2 class="section__title" data-reveal>Ein Stück Spanien<br>in Bielefeld</h2>
+          <p data-reveal="delay-1">Herzlich willkommen bei Las Tapas – Ihrem spanischen Restaurant im Herzen Bielefelds. Bei uns erleben Sie echte spanische Gastfreundschaft mit frisch zubereiteten Gerichten aus hochwertigen Zutaten.</p>
+          <p data-reveal="delay-1">Lassen Sie sich von unserer gemütlichen Atmosphäre verzaubern und genießen Sie ein unvergessliches Abendessen mit Ihren Liebsten – am liebsten auf unserer schönen Terrasse, mit einem Glas Sangria in der Hand.</p>
+          <p data-reveal="delay-2">Sorgfältige Zubereitung, frische Zutaten und ein einladendes Ambiente – das ist Las Tapas. Wir freuen uns auf Ihren Besuch.</p>
+          <div class="about__actions" data-reveal="delay-2">
+            <a href="speisekarte.html" class="btn btn--outline">Unsere Speisekarte</a>
+            <a href="tel:052156002030" class="btn btn--outline">0521 56002030</a>
+          </div>
+        </div>
+        <div class="about__images">
+          <div class="about__img-wrap about__img-wrap--front" data-reveal="scale">
+            <img src="Images/Spanisches-Restaurant-Bielefeld-1.jpg" alt="Spanisches Restaurant Las Tapas Bielefeld" class="about__placeholder" loading="lazy">
+          </div>
+          <div class="about__img-wrap about__img-wrap--back" data-reveal="scale" style="transition-delay:.2s">
+            <img src="Images/Tapas-Tisch.jpg" alt="Tapas Tisch bei Las Tapas Bielefeld" class="about__placeholder" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GALERIE ── -->
+  <section class="gallery section" aria-label="Bildergalerie">
+    <div class="container">
+      <div class="section__header">
+        <span class="eyebrow">Einblicke</span>
+        <h2 class="section__title" data-reveal>Stimmungen &amp; Momente</h2>
+        <p class="section__subtitle" data-reveal="delay-1">Ein Vorgeschmack auf das, was Sie bei uns erwartet – Atmosphäre, Genuss und spanisches Lebensgefühl.</p>
+      </div>
+      <div class="gallery__grid">
+        <figure class="gallery__item" data-reveal="scale">
+          <img src="Images/las-tapas-innen-plaza.jpg"
+               alt="Plaza-Atmosphäre im Las Tapas" loading="lazy">
+        </figure>
+        <figure class="gallery__item gallery__item--tall" data-reveal="scale" style="transition-delay:.15s">
+          <img src="Images/Las-Tapas-innen.jpg"
+               alt="Gemütliches Ambiente im Las Tapas" loading="lazy">
+        </figure>
+        <figure class="gallery__item" data-reveal="scale" style="transition-delay:.3s">
+          <img src="Images/Paella-Meeresfruechte.jpg"
+               alt="Meeresfrüchte-Paella" loading="lazy">
+        </figure>
+        <figure class="gallery__item gallery__item--wide" data-reveal="scale" style="transition-delay:.1s">
+          <img src="Images/Terrasse-Las-Tapas-Bielefeld.png"
+               alt="Terrasse des Las Tapas Restaurants" loading="lazy">
+        </figure>
+        <figure class="gallery__item" data-reveal="scale" style="transition-delay:.25s">
+          <img src="Images/gemischte-tapas-bielefeld.jpg"
+               alt="Gemischte Tapas Auswahl" loading="lazy">
+        </figure>
+      </div>
+      <div class="gallery__cta" data-reveal>
+        <a href="galerie.html" class="btn btn--outline btn--lg">Alle Fotos ansehen</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SPEISEKARTE TEASER ── -->
+  <section class="menu-teaser section">
+    <div class="container">
+      <div class="section__header">
+        <span class="eyebrow">Unsere Küche</span>
+        <h2 class="section__title" data-reveal>Entdecken Sie Spaniens Aromen</h2>
+        <p class="section__subtitle" data-reveal="delay-1">Von kleinen Tapas bis zur großen Paella – bei uns findet jeder seinen Lieblingsgeschmack.</p>
+      </div>
+      <div class="cards">
+        <article class="card" data-reveal>
+          <div class="card__icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></svg>
+          </div>
+          <h3 class="card__title">Tapas</h3>
+          <p class="card__text">Vielfältige warme und kalte Tapas – der perfekte Einstieg in einen spanischen Abend. Für Teilen und Genießen gemacht.</p>
+        </article>
+        <article class="card" data-reveal="delay-1">
+          <div class="card__icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </div>
+          <h3 class="card__title">Paella</h3>
+          <p class="card__text">Nach Original-Rezept zubereitet – als Valenciana, Mixta, Mariscos oder Vegetariana. Mindestbestellung für 2 Personen.</p>
+        </article>
+        <article class="card" data-reveal="delay-2">
+          <div class="card__icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3 class="card__title">Ambiente</h3>
+          <p class="card__text">Entspannen Sie in unserem gemütlichen Restaurant oder auf der Terrasse – mit einem Glas Sangria und guter Gesellschaft.</p>
+        </article>
+      </div>
+      <div class="menu-teaser__cta" data-reveal>
+        <a href="speisekarte.html" class="btn btn--primary btn--lg">Vollständige Speisekarte ansehen</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer" id="oeffnungszeiten">
+    <div class="footer__top">
+      <div class="container">
+        <div class="hours__grid">
+          <div class="hours__block">
+            <span class="eyebrow">Öffnungszeiten</span>
+            <h2 class="section__title">Wir sind für Sie da</h2>
+            <table class="hours__table">
+              <tbody>
+                <tr><td>Montag – Donnerstag</td><td>12:00 – 23:00 Uhr</td></tr>
+                <tr><td>Freitag – Samstag</td><td>12:00 – 00:00 Uhr</td></tr>
+                <tr><td>Sonntag</td><td>Geschlossen</td></tr>
+                <tr class="hours__lunch"><td>Mittagstisch täglich</td><td>12:00 – 15:00 Uhr</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="hours__block">
+            <span class="eyebrow">Kontakt &amp; Adresse</span>
+            <h2 class="section__title">So finden Sie uns</h2>
+            <address class="contact">
+              <p class="contact__item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Arndtstraße 7, 33602 Bielefeld
+              </p>
+              <p class="contact__item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.77h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.4a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <a href="tel:052156002030">0521 – 56 00 20 30</a>
+              </p>
+              <p class="contact__item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <a href="mailto:info@las-tapas-bielefeld.de">info@las-tapas-bielefeld.de</a>
+              </p>
+            </address>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__main">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <a href="index.html" class="footer__logo"><img src="Images/las-tapas-bielefeld-logo.png" alt="Las Tapas Bielefeld"></a>
+            <p>Ihr spanisches Restaurant im Herzen Bielefelds. Frische Zutaten, herzliche Atmosphäre.</p>
+          </div>
+          <nav class="footer__nav" aria-label="Footer-Navigation">
+            <h3>Navigation</h3>
+            <ul role="list">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="speisekarte.html">Speisekarte</a></li>
+              <li><a href="galerie.html">Galerie</a></li>
+              <li><a href="#oeffnungszeiten">Öffnungszeiten</a></li>
+            </ul>
+          </nav>
+          <nav class="footer__nav" aria-label="Rechtliches">
+            <h3>Rechtliches</h3>
+            <ul role="list">
+              <li><a href="impressum.html">Impressum</a></li>
+              <li><a href="datenschutz.html">Datenschutz</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="footer__bottom">
+          <p>&copy; <span id="footer-year">2024</span> Las Tapas Bielefeld &middot; Arndtstraße 7, 33602 Bielefeld</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="mobile-bar" role="navigation" aria-label="Schnellzugriff">
+    <a href="tel:052156002030" class="mobile-bar__call">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.77h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.4a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Jetzt Tisch reservieren
+    </a>
+    <button class="mobile-bar__top" id="mobileBackToTop" aria-label="Nach oben scrollen">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+  </div>
+
+  <button class="back-to-top" id="backToTop" aria-label="Nach oben scrollen">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

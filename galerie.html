@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Galerie – Las Tapas Bielefeld. Eindrücke aus unserem Restaurant, Gerichte und Atmosphäre.">
+  <title>Galerie – Las Tapas Bielefeld</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Playfair+Display+SC:wght@400;700&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── Hero ───────────────────────────────────────────────────────────── */
+    .menu-hero {
+      position: relative;
+      overflow: hidden;
+      background: var(--c-bg);
+    }
+    .menu-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url('Images/las-tapas-bielefeld-titelneu.jpg');
+      background-size: cover;
+      background-position: center 40%;
+      opacity: .18;
+      filter: sepia(20%) saturate(70%);
+      z-index: 0;
+    }
+    .menu-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(12,10,11,.55) 0%, rgba(12,10,11,.35) 50%, rgba(12,10,11,.7) 100%);
+      z-index: 1;
+    }
+    .menu-hero .container { position: relative; z-index: 2; }
+
+    /* ── Galerie-Grid ───────────────────────────────────────────────────── */
+    .gallery-full { padding-block: clamp(4rem, 8vw, 7rem); background: var(--c-bg); }
+
+    .gallery-full__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 280px;
+      grid-auto-flow: dense;
+      gap: .625rem;
+    }
+    .gallery-full__item {
+      overflow: hidden;
+      border-radius: 2px;
+      cursor: pointer;
+      position: relative;
+    }
+    .gallery-full__item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .7s var(--ease), filter .4s var(--ease);
+    }
+    .gallery-full__item:hover img {
+      transform: scale(1.06);
+      filter: brightness(1.12);
+    }
+    .gallery-full__item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(12,10,11,0);
+      transition: background .3s var(--ease);
+      pointer-events: none;
+    }
+    .gallery-full__item:hover::after {
+      background: rgba(12,10,11,.08);
+    }
+    .gallery-full__item--wide  { grid-column: span 2; }
+    .gallery-full__item--tall  { grid-row: span 2; }
+
+    /* ── Lightbox ───────────────────────────────────────────────────────── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(12,10,11,.97);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s var(--ease);
+    }
+    .lightbox.is-open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .lightbox__img {
+      max-width: 88vw;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 2px;
+      opacity: 0;
+      transition: opacity .3s var(--ease);
+      display: block;
+    }
+    .lightbox__img.is-loaded { opacity: 1; }
+
+    .lightbox__btn {
+      position: absolute;
+      background: rgba(240,232,216,.07);
+      border: 1px solid rgba(240,232,216,.15);
+      color: var(--c-text);
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background .2s var(--ease), border-color .2s var(--ease);
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+    .lightbox__btn:hover {
+      background: rgba(196,133,74,.15);
+      border-color: rgba(196,133,74,.4);
+    }
+    .lightbox__close { top: 1.5rem; right: 1.5rem; font-size: 1.5rem; }
+    .lightbox__prev  { left: 1.5rem;  top: 50%; transform: translateY(-50%); }
+    .lightbox__next  { right: 1.5rem; top: 50%; transform: translateY(-50%); }
+
+    .lightbox__counter {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: .8125rem;
+      letter-spacing: .1em;
+      color: rgba(240,232,216,.45);
+      font-family: var(--font-body);
+    }
+
+    @media (max-width: 768px) {
+      .gallery-full__grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 200px;
+      }
+      .gallery-full__item--wide { grid-column: span 2; }
+      .gallery-full__item--tall { grid-row: span 1; }
+      .lightbox__prev { left: .75rem; }
+      .lightbox__next { right: .75rem; }
+    }
+    @media (max-width: 480px) {
+      .gallery-full__grid {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 160px;
+      }
+    }
+
+    /* ── Spanische Akzente ──────────────────────────────────────────────── */
+    .footer { border-top-color: transparent; }
+    .footer::before {
+      content: '';
+      display: block;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent          0%,
+        rgba(170,21,27,.28)  18%,
+        rgba(196,133,74,.52) 50%,
+        rgba(170,21,27,.28)  82%,
+        transparent          100%
+      );
+    }
+    .eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 14px;
+      height: 2px;
+      background: linear-gradient(90deg, #C8102E 0%, #C4854A 100%);
+      margin-right: .5em;
+      vertical-align: middle;
+      opacity: .6;
+      border-radius: 1px;
+    }
+    .gallery-full::before {
+      content: '';
+      display: block;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent          0%,
+        rgba(170,21,27,.22)  20%,
+        rgba(196,133,74,.44) 50%,
+        rgba(170,21,27,.22)  80%,
+        transparent          100%
+      );
+      margin-bottom: 3rem;
+    }
+    .footer__top {
+      background:
+        radial-gradient(ellipse 65% 45% at 108% 0%, rgba(170,21,27,.045) 0%, transparent 55%),
+        var(--c-bg);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAVIGATION ── -->
+  <nav class="nav nav--scrolled" id="nav">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo"><img src="Images/las-tapas-bielefeld-logo.png" alt="Las Tapas Bielefeld"></a>
+      <button class="nav__toggle" id="navToggle" aria-label="Navigation öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__list" id="navList" role="list">
+        <li><a href="index.html" class="nav__link">Home</a></li>
+        <li><a href="speisekarte.html" class="nav__link">Speisekarte</a></li>
+        <li><a href="galerie.html" class="nav__link nav__link--active">Galerie</a></li>
+        <li><a href="index.html#oeffnungszeiten" class="nav__link">Öffnungszeiten</a></li>
+        <li><a href="tel:052156002030" class="nav__link nav__link--cta">0521 56002030</a></li>
+        <li class="nav__reserve"><a href="tel:052156002030" class="nav__reserve-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.77h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.4a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Jetzt Tisch reservieren
+        </a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <header class="menu-hero">
+    <div class="container">
+      <span class="eyebrow">Las Tapas Bielefeld</span>
+      <h1 class="menu-hero__title">Galerie</h1>
+      <p class="menu-hero__sub"><em>Stimmungen, Gerichte &amp; Momente</em></p>
+    </div>
+  </header>
+
+  <!-- ── GALERIE ── -->
+  <section class="gallery-full">
+    <div class="container">
+      <div class="gallery-full__grid">
+
+        <!-- Restaurant & Ambiente -->
+        <figure class="gallery-full__item gallery-full__item--tall" data-reveal="scale" data-lightbox="Images/las-tapas-innen-plaza.jpg">
+          <img src="Images/las-tapas-innen-plaza.jpg" alt="Plaza-Atmosphäre im Las Tapas" loading="lazy">
+        </figure>
+        <figure class="gallery-full__item" data-reveal="scale" style="transition-delay:.1s" data-lightbox="Images/Spanisches-Restaurant-Bielefeld-1.jpg">
+          <img src="Images/Spanisches-Restaurant-Bielefeld-1.jpg" alt="Spanisches Restaurant Bielefeld" loading="lazy">
+        </figure>
+        <figure class="gallery-full__item" data-reveal="scale" style="transition-delay:.2s" data-lightbox="Images/Paella-Meeresfruechte.jpg">
+          <img src="Images/Paella-Meeresfruechte.jpg" alt="Meeresfrüchte-Paella" loading="lazy">
+        </figure>
+
+        <figure class="gallery-full__item gallery-full__item--wide" data-reveal="scale" style="transition-delay:.05s" data-lightbox="Images/Las-Tapas-Eingang-Terrasse.jpg">
+          <img src="Images/Las-Tapas-Eingang-Terrasse.jpg" alt="Eingang und Terrasse Las Tapas" loading="lazy">
+        </figure>
+        <figure class="gallery-full__item" data-reveal="scale" style="transition-delay:.15s" data-lightbox="Images/gemischte-tapas-bielefeld.jpg">
+          <img src="Images/gemischte-tapas-bielefeld.jpg" alt="Gemischte Tapas Auswahl" loading="lazy">
+        </figure>
+
+        <figure class="gallery-full__item" data-reveal="scale" data-lightbox="Images/Bielefeld-Spanisches-Restaurant-1.jpg">
+          <img src="Images/Bielefeld-Spanisches-Restaurant-1.jpg" alt="Innenraum Las Tapas Bielefeld" loading="lazy">
+        </figure>
+        <figure class="gallery-full__item gallery-full__item--tall" data-reveal="scale" style="transition-delay:.1s" data-lightbox="Images/Las-Tapas-innen.jpg">
+          <img src="Images/Las-Tapas-innen.jpg" alt="Gemütliches Ambiente" loading="lazy">
+        </figure>
+        <figure class="gallery-full__item" data-reveal="scale" style="transition-delay:.2s" data-lightbox="Images/Tapas-Tisch.jpg">
+          <img src="Images/Tapas-Tisch.jpg" alt="Tapas Tisch" loading="lazy">
+        </figure>
+
+        <figure class="gallery-full__item gallery-full__item--wide" data-reveal="scale" style="transition-delay:.08s" data-lightbox="Images/Terrasse-Las-Tapas-Bielefeld.png">
+          <img src="Images/Terrasse-Las-Tapas-Bielefeld.png" alt="Terrasse Las Tapas Bielefeld" loading="lazy">
+        </figure>
+        <figure class="gallery-full__item" data-reveal="scale" style="transition-delay:.18s" data-lightbox="Images/kalte-tapas-bielefeld.jpg">
+          <img src="Images/kalte-tapas-bielefeld.jpg" alt="Kalte Tapas" loading="lazy">
+        </figure>
+
+        <figure class="gallery-full__item" data-reveal="scale" data-lightbox="Images/schicken-las-tapas-restaurant.jpg">
+          <img src="Images/schicken-las-tapas-restaurant.jpg" alt="Schickes Ambiente" loading="lazy">
+        </figure>
+        <figure class="gallery-full__item gallery-full__item--tall" data-reveal="scale" style="transition-delay:.12s" data-lightbox="Images/carne-tapas-restaurant.jpg">
+          <img src="Images/carne-tapas-restaurant.jpg" alt="Fleischgerichte bei Las Tapas" loading="lazy">
+        </figure>
+        <figure class="gallery-full__item" data-reveal="scale" style="transition-delay:.24s" data-lightbox="Images/Las-Tapas-Terasse-2.jpg">
+          <img src="Images/Las-Tapas-Terasse-2.jpg" alt="Terrasse Las Tapas" loading="lazy">
+        </figure>
+
+        <figure class="gallery-full__item gallery-full__item--wide" data-reveal="scale" style="transition-delay:.06s" data-lightbox="Images/Las-Tapas-Getraenke.jpg">
+          <img src="Images/Las-Tapas-Getraenke.jpg" alt="Getränkeauswahl bei Las Tapas" loading="lazy">
+        </figure>
+        <figure class="gallery-full__item" data-reveal="scale" style="transition-delay:.14s" data-lightbox="Images/las-tapas-bielefeld-titelneu.jpg">
+          <img src="Images/las-tapas-bielefeld-titelneu.jpg" alt="Las Tapas Bielefeld" loading="lazy">
+        </figure>
+
+        <figure class="gallery-full__item" data-reveal="scale" data-lightbox="Images/fisch-tapas-restaurant-bielefeld.jpg">
+          <img src="Images/fisch-tapas-restaurant-bielefeld.jpg" alt="Fischgerichte" loading="lazy">
+        </figure>
+        <figure class="gallery-full__item gallery-full__item--tall" data-reveal="scale" style="transition-delay:.1s" data-lightbox="Images/las-tapas-innen-hof.jpg">
+          <img src="Images/las-tapas-innen-hof.jpg" alt="Innenhof Las Tapas" loading="lazy">
+        </figure>
+        <figure class="gallery-full__item" data-reveal="scale" style="transition-delay:.2s" data-lightbox="Images/Spanisches-Essen-Bielefeld.jpg">
+          <img src="Images/Spanisches-Essen-Bielefeld.jpg" alt="Spanisches Essen Bielefeld" loading="lazy">
+        </figure>
+
+        <figure class="gallery-full__item gallery-full__item--wide" data-reveal="scale" style="transition-delay:.05s" data-lightbox="Images/Terrasse2-Tapas-Restaurante.png">
+          <img src="Images/Terrasse2-Tapas-Restaurante.png" alt="Terrasse des Restaurants" loading="lazy">
+        </figure>
+        <figure class="gallery-full__item" data-reveal="scale" style="transition-delay:.15s" data-lightbox="Images/madrid-tapas-restaurant-bielefeld.jpg">
+          <img src="Images/madrid-tapas-restaurant-bielefeld.jpg" alt="Madrid-Flair in Bielefeld" loading="lazy">
+        </figure>
+
+        <figure class="gallery-full__item" data-reveal="scale" data-lightbox="Images/Dessert-Las-Tapas-Bielefeld.png">
+          <img src="Images/Dessert-Las-Tapas-Bielefeld.png" alt="Desserts bei Las Tapas" loading="lazy">
+        </figure>
+        <figure class="gallery-full__item" data-reveal="scale" style="transition-delay:.1s" data-lightbox="Images/bier-las-tapas-bielefeld.jpg">
+          <img src="Images/bier-las-tapas-bielefeld.jpg" alt="Bier bei Las Tapas" loading="lazy">
+        </figure>
+        <figure class="gallery-full__item gallery-full__item--tall" data-reveal="scale" style="transition-delay:.2s" data-lightbox="Images/las-tapas-bielefeld-draussen.jpg">
+          <img src="Images/las-tapas-bielefeld-draussen.jpg" alt="Außenbereich Las Tapas" loading="lazy">
+        </figure>
+
+        <figure class="gallery-full__item gallery-full__item--wide" data-reveal="scale" style="transition-delay:.08s" data-lightbox="Images/las-tapas-bielefeld-aussen2.jpg">
+          <img src="Images/las-tapas-bielefeld-aussen2.jpg" alt="Außenansicht Las Tapas" loading="lazy">
+        </figure>
+        <figure class="gallery-full__item" data-reveal="scale" style="transition-delay:.16s" data-lightbox="Images/Leche-frita-Las-Tapas-1.jpg">
+          <img src="Images/Leche-frita-Las-Tapas-1.jpg" alt="Leche Frita" loading="lazy">
+        </figure>
+
+        <figure class="gallery-full__item" data-reveal="scale" data-lightbox="Images/Schweinskarree-Iberico-Bielefeld-1.jpg">
+          <img src="Images/Schweinskarree-Iberico-Bielefeld-1.jpg" alt="Ibérico Schweinskarree" loading="lazy">
+        </figure>
+        <figure class="gallery-full__item" data-reveal="scale" style="transition-delay:.1s" data-lightbox="Images/Ensaladilla-Rusa-Bielefeld-1-1.jpg">
+          <img src="Images/Ensaladilla-Rusa-Bielefeld-1-1.jpg" alt="Ensaladilla Rusa" loading="lazy">
+        </figure>
+        <figure class="gallery-full__item gallery-full__item--tall" data-reveal="scale" style="transition-delay:.2s" data-lightbox="Images/stier-tapas-restaurant-bielefeld.jpg">
+          <img src="Images/stier-tapas-restaurant-bielefeld.jpg" alt="Spanische Dekorationen" loading="lazy">
+        </figure>
+
+        <figure class="gallery-full__item gallery-full__item--wide" data-reveal="scale" style="transition-delay:.06s" data-lightbox="Images/las-tapas-bielefeld-neuneu.jpg">
+          <img src="Images/las-tapas-bielefeld-neuneu.jpg" alt="Las Tapas Restaurant" loading="lazy">
+        </figure>
+        <figure class="gallery-full__item" data-reveal="scale" style="transition-delay:.14s" data-lightbox="Images/suppen-tapas-bielefeld.jpg">
+          <img src="Images/suppen-tapas-bielefeld.jpg" alt="Suppen bei Las Tapas" loading="lazy">
+        </figure>
+
+        <figure class="gallery-full__item" data-reveal="scale" data-lightbox="Images/Tintenfisch-gefuellt-Las-Tapas-1-1.jpg">
+          <img src="Images/Tintenfisch-gefuellt-Las-Tapas-1-1.jpg" alt="Gefüllter Tintenfisch" loading="lazy">
+        </figure>
+        <figure class="gallery-full__item" data-reveal="scale" style="transition-delay:.1s" data-lightbox="Images/gefuellte-Aubergine-Tapas-1-1.jpg">
+          <img src="Images/gefuellte-Aubergine-Tapas-1-1.jpg" alt="Gefüllte Aubergine" loading="lazy">
+        </figure>
+        <figure class="gallery-full__item" data-reveal="scale" style="transition-delay:.2s" data-lightbox="Images/dessert-tapas-restaurant-bielefeld.jpg">
+          <img src="Images/dessert-tapas-restaurant-bielefeld.jpg" alt="Nachspeisen" loading="lazy">
+        </figure>
+
+        <figure class="gallery-full__item gallery-full__item--wide" data-reveal="scale" style="transition-delay:.05s" data-lightbox="Images/mariachhi-tapas-restaurant-bielefeld.jpg">
+          <img src="Images/mariachhi-tapas-restaurant-bielefeld.jpg" alt="Lebendige Atmosphäre" loading="lazy">
+        </figure>
+        <figure class="gallery-full__item" data-reveal="scale" style="transition-delay:.15s" data-lightbox="Images/Schweinefilet-Las-Tapas-1.jpg">
+          <img src="Images/Schweinefilet-Las-Tapas-1.jpg" alt="Schweinefilet" loading="lazy">
+        </figure>
+
+        <figure class="gallery-full__item" data-reveal="scale" data-lightbox="Images/Spanisches-Essen-1.jpg">
+          <img src="Images/Spanisches-Essen-1.jpg" alt="Spanische Spezialitäten" loading="lazy">
+        </figure>
+        <figure class="gallery-full__item" data-reveal="scale" style="transition-delay:.1s" data-lightbox="Images/las-tapas-2.jpg">
+          <img src="Images/las-tapas-2.jpg" alt="Las Tapas Restaurant Bielefeld" loading="lazy">
+        </figure>
+        <figure class="gallery-full__item" data-reveal="scale" style="transition-delay:.2s" data-lightbox="Images/Plato-de-la-casa-Essen-1.jpg">
+          <img src="Images/Plato-de-la-casa-Essen-1.jpg" alt="Hausgericht Las Tapas" loading="lazy">
+        </figure>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── LIGHTBOX ── -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Bildvorschau">
+    <img class="lightbox__img" id="lightbox-img" src="" alt="">
+    <button class="lightbox__btn lightbox__close" id="lightbox-close" aria-label="Schließen">&#x2715;</button>
+    <button class="lightbox__btn lightbox__prev"  id="lightbox-prev"  aria-label="Vorheriges Bild">&#8592;</button>
+    <button class="lightbox__btn lightbox__next"  id="lightbox-next"  aria-label="Nächstes Bild">&#8594;</button>
+    <span class="lightbox__counter" id="lightbox-counter"></span>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="container">
+        <div class="hours__grid">
+          <div class="hours__block">
+            <span class="eyebrow">Öffnungszeiten</span>
+            <h2 class="section__title">Wir sind für Sie da</h2>
+            <table class="hours__table">
+              <tbody>
+                <tr><td>Montag – Donnerstag</td><td>12:00 – 23:00 Uhr</td></tr>
+                <tr><td>Freitag – Samstag</td><td>12:00 – 00:00 Uhr</td></tr>
+                <tr><td>Sonntag</td><td>Geschlossen</td></tr>
+                <tr class="hours__lunch"><td>Mittagstisch täglich</td><td>12:00 – 15:00 Uhr</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="hours__block">
+            <span class="eyebrow">Kontakt &amp; Adresse</span>
+            <h2 class="section__title">So finden Sie uns</h2>
+            <address class="contact">
+              <p class="contact__item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Arndtstraße 7, 33602 Bielefeld
+              </p>
+              <p class="contact__item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.77h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.4a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <a href="tel:052156002030">0521 – 56 00 20 30</a>
+              </p>
+              <p class="contact__item">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <a href="mailto:info@las-tapas-bielefeld.de">info@las-tapas-bielefeld.de</a>
+              </p>
+            </address>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer__main">
+      <div class="container">
+        <div class="footer__grid">
+          <div class="footer__brand">
+            <a href="index.html" class="footer__logo"><img src="Images/las-tapas-bielefeld-logo.png" alt="Las Tapas Bielefeld"></a>
+            <p>Ihr spanisches Restaurant im Herzen Bielefelds. Frische Zutaten, herzliche Atmosphäre.</p>
+          </div>
+          <nav class="footer__nav" aria-label="Footer-Navigation">
+            <h3>Navigation</h3>
+            <ul role="list">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="speisekarte.html">Speisekarte</a></li>
+              <li><a href="galerie.html">Galerie</a></li>
+              <li><a href="index.html#oeffnungszeiten">Öffnungszeiten</a></li>
+            </ul>
+          </nav>
+          <nav class="footer__nav" aria-label="Rechtliches">
+            <h3>Rechtliches</h3>
+            <ul role="list">
+              <li><a href="impressum.html">Impressum</a></li>
+              <li><a href="datenschutz.html">Datenschutz</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="footer__bottom">
+          <p>&copy; <span id="footer-year">2024</span> Las Tapas Bielefeld &middot; Arndtstraße 7, 33602 Bielefeld</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    /* ── Lightbox ── */
+    (function () {
+      const items   = Array.from(document.querySelectorAll('[data-lightbox]'));
+      const overlay = document.getElementById('lightbox');
+      const img     = document.getElementById('lightbox-img');
+      const counter = document.getElementById('lightbox-counter');
+      if (!items.length || !overlay) return;
+
+      let current = 0;
+
+      function show(index) {
+        current = (index + items.length) % items.length;
+        const src = items[current].getAttribute('data-lightbox');
+        const alt = items[current].querySelector('img').alt;
+        img.classList.remove('is-loaded');
+        img.src = src;
+        img.alt = alt;
+        img.onload = () => img.classList.add('is-loaded');
+        counter.textContent = (current + 1) + ' / ' + items.length;
+        overlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function close() {
+        overlay.classList.remove('is-open');
+        document.body.style.overflow = '';
+      }
+
+      items.forEach((item, i) => item.addEventListener('click', () => show(i)));
+
+      document.getElementById('lightbox-close').addEventListener('click', close);
+      document.getElementById('lightbox-prev').addEventListener('click', () => show(current - 1));
+      document.getElementById('lightbox-next').addEventListener('click', () => show(current + 1));
+
+      overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+
+      document.addEventListener('keydown', e => {
+        if (!overlay.classList.contains('is-open')) return;
+        if (e.key === 'Escape')      close();
+        if (e.key === 'ArrowLeft')   show(current - 1);
+        if (e.key === 'ArrowRight')  show(current + 1);
+      });
+
+      let touchStartX = 0;
+      overlay.addEventListener('touchstart', e => {
+        touchStartX = e.touches[0].clientX;
+      }, { passive: true });
+      overlay.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 50) dx < 0 ? show(current + 1) : show(current - 1);
+      });
+    })();
+  </script>
+
+  <div class="mobile-bar" role="navigation" aria-label="Schnellzugriff">
+    <a href="tel:052156002030" class="mobile-bar__call">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.77h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.4a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Jetzt Tisch reservieren
+    </a>
+    <button class="mobile-bar__top" id="mobileBackToTop" aria-label="Nach oben scrollen">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+  </div>
+
+  <button class="back-to-top" id="backToTop" aria-label="Nach oben scrollen">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
