@@ -1,6 +1,6 @@
 /* Navigation scroll state + auto-hide on mobile */
 const nav = document.getElementById('nav');
-const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
+const isMobile = () => window.matchMedia('(max-width: 1024px)').matches;
 
 if (nav) {
   let lastY = window.scrollY;

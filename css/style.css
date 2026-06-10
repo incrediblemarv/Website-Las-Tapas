@@ -727,11 +727,10 @@ address { font-style: normal; }
   .gallery__item--tall { grid-row: auto; }
 }
 
-@media (max-width: 768px) {
-
-  /* ── Fullscreen mobile menu ── */
+/* ── Fullscreen mobile menu (gilt bis 1024px – deckt alle iPhone-Größen ab) ── */
+@media (max-width: 1024px) {
   .nav { z-index: 200; }
-  .nav__toggle { display: flex; position: relative; z-index: 250; }
+  .nav__toggle { display: flex !important; position: relative; z-index: 250; }
 
   .nav__list {
     position: fixed;
@@ -774,7 +773,7 @@ address { font-style: normal; }
   /* Large, readable nav links */
   .nav__link {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 9vw, 2.75rem);
+    font-size: clamp(2rem, 6vw, 2.75rem);
     font-weight: 400;
     text-transform: none;
     letter-spacing: .02em;
@@ -786,10 +785,8 @@ address { font-style: normal; }
   .nav__link:hover,
   .nav__link--active { color: var(--c-text); }
 
-  /* Hide phone number CTA — replaced by reserve button */
   .nav__link--cta { display: none; }
 
-  /* "Jetzt Tisch reservieren" button */
   .nav__reserve { margin-top: 2.5rem; border-bottom: none !important; }
   .nav__reserve-btn {
     display: flex;
@@ -815,10 +812,11 @@ address { font-style: normal; }
     color: var(--c-gold);
   }
 
-  /* Prevent scroll when menu is open */
   body.nav-open { overflow: hidden; }
+}
 
-  /* ── Other layout adjustments ── */
+/* ── Layout adjustments (Smartphone & kleines Tablet) ── */
+@media (max-width: 768px) {
   .about__grid { grid-template-columns: 1fr; }
   .about__image { order: -1; }
   .about__image img { aspect-ratio: 16/9; }
