@@ -1,5 +1,7 @@
 /* Navigation scroll state + auto-hide on mobile */
 const nav = document.getElementById('nav');
+const toggle = document.getElementById('navToggle');
+const navList = document.getElementById('navList');
 const isMobile = () => window.matchMedia('(max-width: 1024px)').matches;
 
 if (nav) {
@@ -31,9 +33,6 @@ if (nav) {
 }
 
 /* Mobile navigation toggle */
-const toggle = document.getElementById('navToggle');
-const navList = document.getElementById('navList');
-
 function openNav() {
   toggle.setAttribute('aria-expanded', 'true');
   navList.classList.add('nav__list--open');
