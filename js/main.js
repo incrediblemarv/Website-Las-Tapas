@@ -4,16 +4,24 @@ const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
 
 if (nav) {
   let lastY = window.scrollY;
+  let navHideReady = false;
+
+  // Zwei Frames warten – iOS Safari stellt Scroll-Position erst danach wieder her
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    lastY = window.scrollY;
+    navHideReady = true;
+  }));
+
   const onScroll = () => {
     const y = window.scrollY;
     nav.classList.toggle('nav--scrolled', y > 40);
 
-    if (isMobile()) {
+    if (isMobile() && navHideReady) {
       const menuOpen = document.getElementById('navList')?.classList.contains('nav__list--open');
       if (!menuOpen) {
         nav.classList.toggle('nav--hidden', y > lastY && y > 80);
       }
-    } else {
+    } else if (!isMobile()) {
       nav.classList.remove('nav--hidden');
     }
     lastY = y;
