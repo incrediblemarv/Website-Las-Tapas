@@ -716,6 +716,11 @@ address { font-style: normal; }
 }
 
 /* ─── Responsive ─────────────────────────────────── */
+@media (max-width: 768px) {
+  /* !important schlägt animation fill-mode: both */
+  .nav--hidden { transform: translateY(-100%) !important; }
+}
+
 @media (max-width: 1024px) {
   .gallery__grid { grid-template-columns: repeat(2, 1fr); }
   .gallery__item--wide { grid-column: span 2; }
