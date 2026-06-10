@@ -856,8 +856,63 @@ address { font-style: normal; }
   padding-bottom: calc(.875rem + env(safe-area-inset-bottom));
   background: transparent;
 }
-.mobile-bar__call {
+
+.mobile-bar__menu {
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  height: 48px;
+  background: rgba(20,16,18,.85);
+  border: 1px solid rgba(196,133,74,.25);
+  color: var(--c-text);
+  font-family: var(--font-body);
+  font-size: .9375rem;
+  font-weight: 600;
+  letter-spacing: .01em;
+  border-radius: var(--radius);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background .2s var(--ease), border-color .2s var(--ease), color .2s var(--ease);
+  cursor: pointer;
+}
+.mobile-bar__menu:active {
+  background: rgba(196,133,74,.12);
+  border-color: rgba(196,133,74,.5);
+  color: var(--c-gold);
+}
+
+.mobile-bar__reserve-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.mobile-bar__top {
+  position: absolute;
+  top: -32px;
+  right: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(20,16,18,.9);
+  border: 1px solid rgba(196,133,74,.3);
+  color: var(--c-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease);
+}
+.mobile-bar__top:active {
+  background: rgba(196,133,74,.12);
+  color: var(--c-gold);
+  border-color: rgba(196,133,74,.5);
+}
+
+.mobile-bar__call {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -875,32 +930,12 @@ address { font-style: normal; }
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   transition: background .2s var(--ease), border-color .2s var(--ease), color .2s var(--ease);
+  white-space: nowrap;
 }
 .mobile-bar__call:active {
   background: rgba(196,133,74,.12);
   border-color: rgba(196,133,74,.5);
   color: var(--c-gold);
-}
-.mobile-bar__top {
-  flex-shrink: 0;
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius);
-  background: rgba(20,16,18,.85);
-  border: 1px solid rgba(196,133,74,.25);
-  color: var(--c-text-muted);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease);
-}
-.mobile-bar__top:active {
-  background: rgba(196,133,74,.12);
-  color: var(--c-gold);
-  border-color: rgba(196,133,74,.5);
 }
 
 @media (max-width: 768px) {

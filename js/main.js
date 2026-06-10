@@ -101,6 +101,12 @@ if (mobileTop) {
   });
 }
 
+/* Mobile bar menu button */
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+if (mobileMenuBtn && toggle && navList) {
+  mobileMenuBtn.addEventListener('click', openNav);
+}
+
 /* Subtle hero parallax */
 const heroBg = document.querySelector('.hero__bg img');
 if (heroBg) {
