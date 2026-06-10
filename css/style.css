@@ -829,7 +829,7 @@ address { font-style: normal; }
   .footer__grid { grid-template-columns: 1fr 1fr; }
   .footer__brand { grid-column: span 2; }
   .menu-items { grid-template-columns: 1fr; }
-  .gallery__grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; gap: .625rem; }
+  .gallery__grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 200px; gap: 0; }
   .gallery__item--wide { grid-column: span 2; }
   .gallery__item--tall { grid-row: span 1; }
   .gallery__item img { height: 100%; object-fit: cover; aspect-ratio: unset; }
